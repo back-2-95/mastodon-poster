@@ -1,0 +1,5 @@
+framework:
+    http_client:
+        scoped_clients:
+            mastodon.client:
+                base_uri: '%env(MASTODON_BASE_URI)%'
