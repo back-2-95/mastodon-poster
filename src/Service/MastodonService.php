@@ -42,10 +42,10 @@ class MastodonService
                         'grant_type' => 'client_credentials',
                         'client_id' => $this->mastodonClientId,
                         'client_secret' => $this->mastodonClientSecret,
-                        'scope' => 'write:statuses',
+                        'scope' => 'read write',
                     ]
                 ]);
-                dd($response->toArray());
+
                 return $response->toArray()['access_token'];
             } catch (TransportExceptionInterface $e) {
                 return null;

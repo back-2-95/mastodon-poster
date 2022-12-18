@@ -36,7 +36,14 @@ class MastodonPostCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $status = $input->getArgument('status');
+        $status = trim($input->getArgument('status'));
+        $length = strlen($status);
+        $limit = 500;
+
+        if ($length > $limit) {
+            $io->note(sprintf('Mastodon has %d character limit! Your status has %s chars.', $limit, $length));
+            return Command::FAILURE;
+        }
 
         $status = $this->mastodonService->postStatus($status);
 
