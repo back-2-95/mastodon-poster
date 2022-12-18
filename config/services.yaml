@@ -27,3 +27,4 @@ services:
         arguments:
             $mastodonClientId: '%env(resolve:MASTODON_CLIENT_ID)%'
             $mastodonClientSecret: '%env(resolve:MASTODON_CLIENT_SECRET)%'
+            $mastodonAccessToken: '%env(resolve:MASTODON_ACCESS_TOKEN)%'

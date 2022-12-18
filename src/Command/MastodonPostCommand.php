@@ -38,6 +38,8 @@ class MastodonPostCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+        $this->mastodonService->postStatus('Testataan REST APIa jossa on linkki: https://www.google.fi');
+
         return Command::SUCCESS;
     }
 }
