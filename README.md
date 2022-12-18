@@ -8,5 +8,5 @@ Copy `.env.dist` as `.env.local` and populate with values from https://YOUR_MAST
 
 ```
 composer install
-bin/console mastodon:post
+bin/console mastodon:post 'Your status post via REST API'
 ```

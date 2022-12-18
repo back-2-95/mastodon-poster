@@ -13,7 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'mastodon:post',
-    description: 'Add a short description for your command',
+    description: 'Create a status post to your Mastodon account',
 )]
 class MastodonPostCommand extends Command
 {
@@ -29,16 +29,18 @@ class MastodonPostCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->addArgument('status', InputArgument::REQUIRED, 'Status body as text')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $status = $input->getArgument('status');
 
-        $this->mastodonService->postStatus('Testataan REST APIa jossa on linkki: https://www.google.fi');
+        $status = $this->mastodonService->postStatus($status);
+
+        $io->success('Status created: ' . $status['url']);
 
         return Command::SUCCESS;
     }

@@ -55,7 +55,7 @@ class MastodonService
         return $this->token;
     }
 
-    public function postStatus(string $status, string $visibility = 'public'): ?string
+    public function postStatus(string $status, string $visibility = 'public'): ?array
     {
         try {
             $response = $this->api()->request('POST', '/api/v1/statuses', [
@@ -69,7 +69,7 @@ class MastodonService
                 ]
             ]);
 
-            return $response->toArray()['id'];
+            return $response->toArray();
         }
         catch (TransportExceptionInterface $e) {
             return null;
